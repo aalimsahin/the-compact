@@ -5,7 +5,6 @@ enum EmissaryStatus {
     Disabled, // Not pending or enabled for forced withdrawal
     Scheduled, // Available but scheduled
     Enabled // Available for forced withdrawal on demand
-
 }
 
 struct EmissaryConfig {

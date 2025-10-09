@@ -297,11 +297,7 @@ library EmissaryLib {
      * @param lockTag The lock tag to which the emissary assignment is associated.
      * @return config The configuration for the emissary in storage.
      */
-    function _getEmissaryConfig(address sponsor, bytes12 lockTag)
-        private
-        pure
-        returns (EmissaryConfig storage config)
-    {
+    function _getEmissaryConfig(address sponsor, bytes12 lockTag) private pure returns (EmissaryConfig storage config) {
         // Pack and hash scope, sponsor, and lock tag to derive emissary config storage slot.
         assembly ("memory-safe") {
             // Start by writing the sponsor address to scratch space so that the 20 bytes of

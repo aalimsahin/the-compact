@@ -13,7 +13,9 @@ import { Setup } from "./Setup.sol";
 import { LibString } from "solady/utils/LibString.sol";
 
 import {
-    TestParams, CreateClaimHashWithWitnessArgs, CreateBatchClaimHashWithWitnessArgs
+    TestParams,
+    CreateClaimHashWithWitnessArgs,
+    CreateBatchClaimHashWithWitnessArgs
 } from "./TestHelperStructs.sol";
 
 import { EfficiencyLib } from "../../src/lib/EfficiencyLib.sol";
@@ -67,9 +69,9 @@ contract DepositAndRegisterTest is Setup {
 
         {
             vm.prank(swapper);
-            (params.id) = theCompact.depositNativeAndRegister{ value: params.amount }(
-                lockTag, claimHash, compactWithWitnessTypehash
-            );
+            (params.id) = theCompact.depositNativeAndRegister{
+                value: params.amount
+            }(lockTag, claimHash, compactWithWitnessTypehash);
             vm.snapshotGasLastCall("depositNativeAndRegister");
 
             assertEq(theCompact.balanceOf(swapper, params.id), params.amount);
@@ -321,9 +323,9 @@ contract DepositAndRegisterTest is Setup {
 
         {
             vm.prank(swapper);
-            (bool status) = theCompact.batchDepositAndRegisterMultiple{ value: params.amount }(
-                idsAndAmounts, claimHashesAndTypehashes
-            );
+            (bool status) = theCompact.batchDepositAndRegisterMultiple{
+                value: params.amount
+            }(idsAndAmounts, claimHashesAndTypehashes);
             vm.snapshotGasLastCall("batchDepositAndRegisterMultiple");
 
             assertEq(theCompact.balanceOf(swapper, params.id), params.amount);

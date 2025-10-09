@@ -290,7 +290,7 @@ contract TheCompact is ITheCompact, ERC6909, TheCompactLogic {
     }
 
     /// @inheritdoc ITheCompact
-    function __benchmark(bytes32 /* salt */ ) external payable {
+    function __benchmark(bytes32 /* salt */) external payable {
         _benchmark();
     }
 

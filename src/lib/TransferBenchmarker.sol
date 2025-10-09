@@ -253,8 +253,10 @@ contract TransferBenchmarker {
 
                 // Determine the difference between the cost of the first balance check
                 // and the cost of the second balance check.
-                coldAccountAccessCost :=
-                    sub(sub(gasCheckpointFour, gasCheckpointFive), sub(gasCheckpointFive, gasCheckpointSix))
+                coldAccountAccessCost := sub(
+                    sub(gasCheckpointFour, gasCheckpointFive),
+                    sub(gasCheckpointFive, gasCheckpointSix)
+                )
             }
 
             // Ensure that both calls succeeded and that the cost of the first call

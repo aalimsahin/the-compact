@@ -25,8 +25,11 @@ contract Permit2Test is Test {
         vm.deal(permit2DeployerDeployer, 1e18);
         vm.prank(permit2DeployerDeployer);
         assembly ("memory-safe") {
-            deployedPermit2Deployer :=
-                create(0, add(permit2DeployerCreationCode, 0x20), mload(permit2DeployerCreationCode))
+            deployedPermit2Deployer := create(
+                0,
+                add(permit2DeployerCreationCode, 0x20),
+                mload(permit2DeployerCreationCode)
+            )
         }
 
         require(deployedPermit2Deployer != permit2Deployer, "Contract deployment failed");
@@ -55,20 +58,21 @@ contract Permit2Test is Test {
         tokenPermissions = new ISignatureTransfer.TokenPermissions[](hasNative ? _tokens.length - 1 : _tokens.length);
         for (uint256 i = 0; i < tokenPermissions.length; i++) {
             tokenPermissions[i] = ISignatureTransfer.TokenPermissions({
-                token: _tokens[i + hasNative.asUint256()],
-                amount: _amounts[i + hasNative.asUint256()]
+                token: _tokens[i + hasNative.asUint256()], amount: _amounts[i + hasNative.asUint256()]
             });
         }
 
-        bytes32 domainSeparator =
-            keccak256(abi.encode(permit2EIP712DomainHash, keccak256(bytes("Permit2")), block.chainid, address(permit2)));
+        bytes32 domainSeparator = keccak256(
+            abi.encode(permit2EIP712DomainHash, keccak256(bytes("Permit2")), block.chainid, address(permit2))
+        );
 
         // Calculate the EIP-712 hash for the array of TokenPermissions structs
         bytes32 TOKEN_PERMISSIONS_TYPEHASH = keccak256("TokenPermissions(address token,uint256 amount)");
         bytes32[] memory encodedPermissions = new bytes32[](tokenPermissions.length);
         for (uint256 i = 0; i < tokenPermissions.length; i++) {
-            encodedPermissions[i] =
-                keccak256(abi.encode(TOKEN_PERMISSIONS_TYPEHASH, tokenPermissions[i].token, tokenPermissions[i].amount));
+            encodedPermissions[i] = keccak256(
+                abi.encode(TOKEN_PERMISSIONS_TYPEHASH, tokenPermissions[i].token, tokenPermissions[i].amount)
+            );
         }
 
         bytes32 tokenPermissionsPortion = keccak256(abi.encodePacked(encodedPermissions));
@@ -171,8 +175,10 @@ contract Permit2Test is Test {
         view
         returns (ISignatureTransfer.PermitTransferFrom memory permit, bytes32 witnessHash, bytes memory signature)
     {
-        bytes32 domainSeparator =
-            keccak256(abi.encode(permit2EIP712DomainHash, keccak256(bytes("Permit2")), block.chainid, address(permit2)));
+        bytes32
+            domainSeparator = keccak256(
+            abi.encode(permit2EIP712DomainHash, keccak256(bytes("Permit2")), block.chainid, address(permit2))
+        );
         witnessHash =
             keccak256(abi.encode(keccak256("CompactDeposit(bytes12 lockTag,address recipient)"), _lockTag, _recipient));
 

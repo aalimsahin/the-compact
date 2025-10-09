@@ -12,7 +12,9 @@ import { BatchClaim } from "../../src/types/BatchClaims.sol";
 import { COMPACT_TYPEHASH, BATCH_COMPACT_TYPEHASH } from "src/types/EIP712Types.sol";
 import { Setup } from "./Setup.sol";
 import {
-    TestParams, CreateClaimHashWithWitnessArgs, CreateBatchClaimHashWithWitnessArgs
+    TestParams,
+    CreateClaimHashWithWitnessArgs,
+    CreateBatchClaimHashWithWitnessArgs
 } from "./TestHelperStructs.sol";
 import { EfficiencyLib } from "../../src/lib/EfficiencyLib.sol";
 import { MockERC1271Wallet } from "../../lib/solady/test/utils/mocks/MockERC1271Wallet.sol";
@@ -54,9 +56,9 @@ contract DepositAndRegisterForTest is Setup {
             witness = keccak256(abi.encode(witnessTypehash, witnessArgument));
 
             vm.prank(swapperSponsor);
-            (id, registeredClaimHash) = theCompact.depositNativeAndRegisterFor{ value: params.amount }(
-                address(swapper), lockTag, arbiter, params.nonce, params.deadline, compactWithWitnessTypehash, witness
-            );
+            (id, registeredClaimHash) = theCompact.depositNativeAndRegisterFor{
+                value: params.amount
+            }(address(swapper), lockTag, arbiter, params.nonce, params.deadline, compactWithWitnessTypehash, witness);
             vm.snapshotGasLastCall("depositNativeAndRegisterFor");
 
             assertEq(theCompact.balanceOf(swapper, id), params.amount);
@@ -171,9 +173,9 @@ contract DepositAndRegisterForTest is Setup {
         bytes32 registeredClaimHash;
         {
             vm.prank(swapperSponsor);
-            (id, registeredClaimHash) = theCompact.depositNativeAndRegisterFor{ value: params.amount }(
-                address(swapper), lockTag, arbiter, params.nonce, params.deadline, COMPACT_TYPEHASH, bytes32(0)
-            );
+            (id, registeredClaimHash) = theCompact.depositNativeAndRegisterFor{
+                value: params.amount
+            }(address(swapper), lockTag, arbiter, params.nonce, params.deadline, COMPACT_TYPEHASH, bytes32(0));
             vm.snapshotGasLastCall("depositNativeAndRegisterForNoWitness");
 
             assertEq(theCompact.balanceOf(swapper, id), params.amount);
@@ -1219,7 +1221,9 @@ contract DepositAndRegisterForTest is Setup {
             witness = keccak256(abi.encode(witnessTypehash, witnessArgument));
 
             vm.prank(depositMaker);
-            (id, registeredClaimHash) = theCompact.depositNativeAndRegisterFor{ value: params.amount }(
+            (id, registeredClaimHash) = theCompact.depositNativeAndRegisterFor{
+                value: params.amount
+            }(
                 address(erc1271Sponsor),
                 lockTag,
                 arbiter,
@@ -1471,8 +1475,9 @@ contract DepositAndRegisterForTest is Setup {
         );
 
         // Verify the claim hash
-        bytes32 claimHash =
-            _verifyBatchClaimHash(address(erc1271Sponsor), arbiter, params, idsAndAmounts, witness, registeredClaimHash);
+        bytes32 claimHash = _verifyBatchClaimHash(
+            address(erc1271Sponsor), arbiter, params, idsAndAmounts, witness, registeredClaimHash
+        );
 
         // Prepare and execute the batch claim
         _executeBatchClaim(address(erc1271Sponsor), arbiter, claimHash, params, idsAndAmounts, witness);
@@ -1493,7 +1498,7 @@ contract DepositAndRegisterForTest is Setup {
             deadline: block.timestamp + 1000,
             recipient: 0x1111111111111111111111111111111111111111,
             id: 0 // Not used directly in this setup
-         });
+        });
 
         arbiter = 0x2222222222222222222222222222222222222222;
         depositMaker = makeAddr("depositMaker");

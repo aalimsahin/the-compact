@@ -268,10 +268,8 @@ contract ComponentLibTest is Test {
         pure
         returns (uint256 id)
     {
-        id = (
-            (scope.asUint256() << 255) | (period.asUint256() << 252) | (allocator.toAllocatorId().asUint256() << 160)
-                | token.asUint256()
-        );
+        id = ((scope.asUint256() << 255) | (period.asUint256() << 252) | (allocator.toAllocatorId().asUint256() << 160)
+                | token.asUint256());
     }
 
     function _makeClaimant(address _recipient) internal view returns (uint256) {

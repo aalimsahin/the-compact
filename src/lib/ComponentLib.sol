@@ -173,9 +173,8 @@ library ComponentLib {
             BatchClaimComponent calldata claimComponent = claims[i];
 
             // Process each component, verifying total amount and executing operations.
-            claimComponent.portions.verifyAndProcessComponents(
-                sponsor, claimComponent.id, claimComponent.allocatedAmount
-            );
+            claimComponent.portions
+                .verifyAndProcessComponents(sponsor, claimComponent.id, claimComponent.allocatedAmount);
         }
     }
 
@@ -215,8 +214,8 @@ library ComponentLib {
             claimComponent = claims[i];
             id = claimComponent.id;
 
-            errorBuffer |=
-                (id.toAllocatorId() != firstAllocatorId).or(id.scopeNotMultichain(sponsorDomainSeparator)).asUint256();
+            errorBuffer |= (id.toAllocatorId() != firstAllocatorId).or(id.scopeNotMultichain(sponsorDomainSeparator))
+                .asUint256();
 
             // Include the id and amount in idsAndAmounts.
             idsAndAmounts[i] = [id, claimComponent.allocatedAmount];

@@ -58,10 +58,7 @@ contract DepositViaPermit2Logic is DepositLogic {
      * @param signature   The Permit2 signature from the depositor authorizing the deposit.
      * @return            The ERC6909 token identifier of the associated resource lock.
      */
-    function _depositViaPermit2(address token, address recipient, bytes calldata signature)
-        internal
-        returns (uint256)
-    {
+    function _depositViaPermit2(address token, address recipient, bytes calldata signature) internal returns (uint256) {
         // Derive the CompactDeposit witness hash.
         bytes32 witness = uint256(0xa4).asStubborn().deriveCompactDepositWitnessHash();
 
@@ -277,8 +274,9 @@ contract DepositViaPermit2Logic is DepositLogic {
                     }
 
                     // Begin preparing Permit2 call data.
-                    (m, typestringMemoryLocation) = totalTokensLessInitialNative
-                        .beginPreparingBatchDepositPermit2Calldata(firstUnderlyingTokenIsNative);
+                    (m, typestringMemoryLocation) = totalTokensLessInitialNative.beginPreparingBatchDepositPermit2Calldata(
+                        firstUnderlyingTokenIsNative
+                    );
 
                     // Prepare the typestring fragment and get batch activation and compact typehashes.
                     (activationTypehash, compactTypehash) = typestringMemoryLocation.writeWitnessAndGetTypehashes(
@@ -302,8 +300,10 @@ contract DepositViaPermit2Logic is DepositLogic {
                         and(add(0x153, add(witness.length, iszero(iszero(witness.length)))), not(0x1f))
 
                     // Derive the signature offset value.
-                    signatureOffsetValue :=
-                        add(add(0x180, shl(7, totalTokensLessInitialNative)), totalWitnessMemoryOffset)
+                    signatureOffsetValue := add(
+                        add(0x180, shl(7, totalTokensLessInitialNative)),
+                        totalWitnessMemoryOffset
+                    )
                 }
 
                 // Write the signature and perform the Permit2 call.

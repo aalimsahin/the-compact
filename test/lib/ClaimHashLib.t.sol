@@ -134,11 +134,7 @@ contract ClaimHashLibTest is Setup {
         recipients[0] = Component({ claimant: CLAIMANT.asUint256(), amount: 100 });
 
         AllocatedTransfer memory transfer = AllocatedTransfer({
-            allocatorData: bytes(""),
-            nonce: 12345,
-            expires: block.timestamp + 1 days,
-            id: 1,
-            recipients: recipients
+            allocatorData: bytes(""), nonce: 12345, expires: block.timestamp + 1 days, id: 1, recipients: recipients
         });
 
         bytes32 expectedTypehash = COMPACT_TYPEHASH;
@@ -175,10 +171,7 @@ contract ClaimHashLibTest is Setup {
         transfers[1] = ComponentsById({ id: id2, portions: portions2 });
 
         AllocatedBatchTransfer memory batchTransfer = AllocatedBatchTransfer({
-            allocatorData: bytes(""),
-            nonce: 12345,
-            expires: block.timestamp + 1 days,
-            transfers: transfers
+            allocatorData: bytes(""), nonce: 12345, expires: block.timestamp + 1 days, transfers: transfers
         });
 
         Lock memory lock1 = Lock({ lockTag: bytes12(uint96(1)), token: address(0), amount: 100 });

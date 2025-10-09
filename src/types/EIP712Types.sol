@@ -13,7 +13,7 @@ struct Compact {
     bytes12 lockTag; // A tag representing the allocator, reset period, and scope.
     address token; // The locked token, or address(0) for native tokens.
     uint256 amount; // The amount of ERC6909 tokens to commit from the lock.
-        // Optional witness may follow.
+    // Optional witness may follow.
 }
 
 // keccak256(bytes("Compact(address arbiter,address sponsor,uint256 nonce,uint256 expires,bytes12 lockTag,address token,uint256 amount)"))
@@ -54,7 +54,7 @@ struct BatchCompact {
     uint256 nonce; // A parameter to enforce replay protection, scoped to allocator.
     uint256 expires; // The time at which the claim expires.
     Lock[] commitments; // The committed locks with lock tags, tokens, & amounts.
-        // Optional witness may follow.
+    // Optional witness may follow.
 }
 
 // keccak256(bytes("BatchCompact(address arbiter,address sponsor,uint256 nonce,uint256 expires,Lock[] commitments)Lock(bytes12 lockTag,address token,uint256 amount)"))
@@ -92,7 +92,7 @@ struct Element {
     address arbiter; // The account tasked with verifying and submitting the claim.
     uint256 chainId; // The chainId where the tokens are located.
     Lock[] commitments; // The committed locks with lock tags, tokens, & amounts.
-        // Mandate (witness) must follow.
+    // Mandate (witness) must follow.
 }
 
 // Message signed by the sponsor that specifies the conditions under which a set of

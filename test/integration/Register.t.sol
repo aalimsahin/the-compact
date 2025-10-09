@@ -308,9 +308,9 @@ contract RegisterTest is Setup {
 
             // Make deposits from the EIP-1271 sponsor
             vm.startPrank(address(erc1271Sponsor));
-            claim1.id = theCompact.depositNative{ value: claim1.allocatedAmount + claim2.allocatedAmount }(
-                lockTag, address(erc1271Sponsor)
-            );
+            claim1.id = theCompact.depositNative{
+                value: claim1.allocatedAmount + claim2.allocatedAmount
+            }(lockTag, address(erc1271Sponsor));
             claim2.id = claim1.id;
             vm.stopPrank();
 

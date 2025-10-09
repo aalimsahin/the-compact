@@ -94,10 +94,7 @@ contract TransferLogicTest is Test {
 
         // Create AllocatedBatchTransfer struct
         AllocatedBatchTransfer memory batchTransfer = AllocatedBatchTransfer({
-            nonce: 1,
-            expires: block.timestamp + 1 days,
-            transfers: transfers,
-            allocatorData: bytes("")
+            nonce: 1, expires: block.timestamp + 1 days, transfers: transfers, allocatorData: bytes("")
         });
 
         // Should emit 3 transfers
@@ -229,7 +226,7 @@ contract TransferLogicTest is Test {
             recipients[i] = Component({
                 claimant: _makeClaimant(makeAddr(string(abi.encodePacked("recipient", vm.toString(i))))),
                 amount: 10 // 10 tokens each, total 1000
-             });
+            });
             vm.expectEmit(true, true, true, true);
             emit ERC6909.Transfer(sponsor, sponsor, recipients[i].claimant.toAddress(), testTokenId, 10);
         }
@@ -254,10 +251,7 @@ contract TransferLogicTest is Test {
 
         // Create AllocatedBatchTransfer struct
         AllocatedBatchTransfer memory batchTransfer = AllocatedBatchTransfer({
-            nonce: 1,
-            expires: block.timestamp + 1 days,
-            transfers: transfers,
-            allocatorData: bytes("")
+            nonce: 1, expires: block.timestamp + 1 days, transfers: transfers, allocatorData: bytes("")
         });
 
         // Process the batch transfer - should revert because of empty array check
@@ -299,10 +293,7 @@ contract TransferLogicTest is Test {
 
         // Create AllocatedBatchTransfer struct
         AllocatedBatchTransfer memory batchTransfer = AllocatedBatchTransfer({
-            nonce: 1,
-            expires: block.timestamp + 1 days,
-            transfers: transfers,
-            allocatorData: bytes("")
+            nonce: 1, expires: block.timestamp + 1 days, transfers: transfers, allocatorData: bytes("")
         });
 
         // Should emit 3 transfers (which are later reverted)
@@ -350,10 +341,7 @@ contract TransferLogicTest is Test {
         transfers[1] = ComponentsById({ id: secondTokenId, portions: portions2 });
 
         AllocatedBatchTransfer memory batchTransfer = AllocatedBatchTransfer({
-            nonce: 1,
-            expires: block.timestamp + 1 days,
-            transfers: transfers,
-            allocatorData: bytes("")
+            nonce: 1, expires: block.timestamp + 1 days, transfers: transfers, allocatorData: bytes("")
         });
 
         // Should revert with inconsistent allocators

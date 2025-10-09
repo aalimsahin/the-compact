@@ -512,7 +512,11 @@ contract AttestableAllocator is IAllocator {
     function _isClaimAuthorized(
         bytes32 claimHash, // The message hash representing the claim.
         bytes calldata allocatorData // Arbitrary data provided by the arbiter.
-    ) internal view returns (bool) {
+    )
+        internal
+        view
+        returns (bool)
+    {
         return _attester.isValidSignatureNow(_withDomain(claimHash, _getCompactDomainSeparator()), allocatorData);
     }
 
