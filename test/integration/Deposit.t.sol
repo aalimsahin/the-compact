@@ -195,10 +195,8 @@ contract DepositTest is Setup {
         vm.prank(allocator);
         uint96 allocatorId = theCompact.__registerAllocator(allocator, "");
 
-        uint256 id = (
-            (uint256(scope) << 255) | (uint256(resetPeriod) << 252) | (uint256(allocatorId) << 160)
-                | uint256(uint160(address(0)))
-        );
+        uint256 id = ((uint256(scope) << 255) | (uint256(resetPeriod) << 252) | (uint256(allocatorId) << 160)
+                | uint256(uint160(address(0))));
 
         {
             uint256[2][] memory idsAndAmounts = new uint256[2][](1);
@@ -246,10 +244,8 @@ contract DepositTest is Setup {
         vm.prank(allocator);
         uint96 allocatorId = theCompact.__registerAllocator(allocator, "");
 
-        uint256 id = (
-            (uint256(scope) << 255) | (uint256(resetPeriod) << 252) | (uint256(allocatorId) << 160)
-                | uint256(uint160(address(token)))
-        );
+        uint256 id = ((uint256(scope) << 255) | (uint256(resetPeriod) << 252) | (uint256(allocatorId) << 160)
+                | uint256(uint160(address(token))));
 
         {
             uint256[2][] memory idsAndAmounts = new uint256[2][](1);
@@ -299,15 +295,11 @@ contract DepositTest is Setup {
         vm.prank(alwaysOKAllocator);
         uint96 anotherAllocatorId = theCompact.__registerAllocator(alwaysOKAllocator, "");
 
-        uint256 nativeId = (
-            (uint256(scope) << 255) | (uint256(resetPeriod) << 252) | (uint256(allocatorId) << 160)
-                | uint256(uint160(address(0)))
-        );
+        uint256 nativeId = ((uint256(scope) << 255) | (uint256(resetPeriod) << 252) | (uint256(allocatorId) << 160)
+                | uint256(uint160(address(0))));
 
-        uint256 tokenId = (
-            (uint256(scope) << 255) | (uint256(resetPeriod) << 252) | (uint256(anotherAllocatorId) << 160)
-                | uint256(uint160(address(token)))
-        );
+        uint256 tokenId = ((uint256(scope) << 255) | (uint256(resetPeriod) << 252)
+                | (uint256(anotherAllocatorId) << 160) | uint256(uint160(address(token))));
 
         {
             uint256[2][] memory idsAndAmounts = new uint256[2][](2);
@@ -379,15 +371,11 @@ contract DepositTest is Setup {
         vm.prank(allocator);
         uint96 allocatorId = theCompact.__registerAllocator(allocator, "");
 
-        uint256 nativeId = (
-            (uint256(scope) << 255) | (uint256(resetPeriod) << 252) | (uint256(allocatorId) << 160)
-                | uint256(uint160(address(0)))
-        );
+        uint256 nativeId = ((uint256(scope) << 255) | (uint256(resetPeriod) << 252) | (uint256(allocatorId) << 160)
+                | uint256(uint160(address(0))));
 
-        uint256 tokenId = (
-            (uint256(scope) << 255) | (uint256(resetPeriod) << 252) | (uint256(allocatorId) << 160)
-                | uint256(uint160(address(token)))
-        );
+        uint256 tokenId = ((uint256(scope) << 255) | (uint256(resetPeriod) << 252) | (uint256(allocatorId) << 160)
+                | uint256(uint160(address(token))));
 
         {
             uint256[2][] memory idsAndAmounts = new uint256[2][](2);
@@ -613,15 +601,11 @@ contract DepositTest is Setup {
         vm.prank(allocator);
         uint96 allocatorId = theCompact.__registerAllocator(allocator, "");
 
-        uint256 nativeId = (
-            (uint256(scope) << 255) | (uint256(resetPeriod) << 252) | (uint256(allocatorId) << 160)
-                | uint256(uint160(address(0)))
-        );
+        uint256 nativeId = ((uint256(scope) << 255) | (uint256(resetPeriod) << 252) | (uint256(allocatorId) << 160)
+                | uint256(uint160(address(0))));
 
-        uint256 tokenId = (
-            (uint256(scope) << 255) | (uint256(resetPeriod) << 252) | (uint256(allocatorId) << 160)
-                | uint256(uint160(address(token)))
-        );
+        uint256 tokenId = ((uint256(scope) << 255) | (uint256(resetPeriod) << 252) | (uint256(allocatorId) << 160)
+                | uint256(uint160(address(token))));
 
         {
             uint256[2][] memory idsAndAmounts = new uint256[2][](2);
@@ -650,15 +634,11 @@ contract DepositTest is Setup {
         vm.prank(allocator);
         uint96 allocatorId = theCompact.__registerAllocator(allocator, "");
 
-        uint256 tokenId = (
-            (uint256(scope) << 255) | (uint256(resetPeriod) << 252) | (uint256(allocatorId) << 160)
-                | uint256(uint160(address(token)))
-        );
+        uint256 tokenId = ((uint256(scope) << 255) | (uint256(resetPeriod) << 252) | (uint256(allocatorId) << 160)
+                | uint256(uint160(address(token))));
 
-        uint256 anotherTokenId = (
-            (uint256(scope) << 255) | (uint256(resetPeriod) << 252) | (uint256(allocatorId) << 160)
-                | uint256(uint160(address(anotherToken)))
-        );
+        uint256 anotherTokenId = ((uint256(scope) << 255) | (uint256(resetPeriod) << 252)
+                | (uint256(allocatorId) << 160) | uint256(uint160(address(anotherToken))));
 
         {
             uint256[2][] memory idsAndAmounts = new uint256[2][](2);
@@ -687,15 +667,11 @@ contract DepositTest is Setup {
         vm.prank(allocator);
         uint96 allocatorId = theCompact.__registerAllocator(allocator, "");
 
-        uint256 nativeId = (
-            (uint256(scope) << 255) | (uint256(resetPeriod) << 252) | (uint256(allocatorId) << 160)
-                | uint256(uint160(address(0)))
-        );
+        uint256 nativeId = ((uint256(scope) << 255) | (uint256(resetPeriod) << 252) | (uint256(allocatorId) << 160)
+                | uint256(uint160(address(0))));
 
-        uint256 tokenId = (
-            (uint256(scope) << 255) | (uint256(resetPeriod) << 252) | (uint256(allocatorId) << 160)
-                | uint256(uint160(address(token)))
-        );
+        uint256 tokenId = ((uint256(scope) << 255) | (uint256(resetPeriod) << 252) | (uint256(allocatorId) << 160)
+                | uint256(uint160(address(token))));
 
         {
             uint256[2][] memory idsAndAmounts = new uint256[2][](2);
@@ -720,7 +696,7 @@ contract DepositTest is Setup {
         Scope scope = Scope.Multichain;
         uint256 amount = 1e18;
 
-        uint96 allocatorId = uint96(uint160(allocator) >> (64 + 4) /* 1 byte for scope + 3 bytes for reset period */ ); // unregistered allocator
+        uint96 allocatorId = uint96(uint160(allocator) >> (64 + 4) /* 1 byte for scope + 3 bytes for reset period */); // unregistered allocator
 
         bytes12 lockTag =
             bytes12(bytes32((uint256(scope) << 255) | (uint256(resetPeriod) << 252) | (uint256(allocatorId) << 160)));

@@ -73,11 +73,7 @@ contract AllocatedTransferTest is Setup {
 
         // Create and execute transfer
         AllocatedTransfer memory transfer = AllocatedTransfer({
-            nonce: params.nonce,
-            expires: params.deadline,
-            allocatorData: allocatorData,
-            id: id,
-            recipients: recipients
+            nonce: params.nonce, expires: params.deadline, allocatorData: allocatorData, id: id, recipients: recipients
         });
 
         vm.prank(swapper);
@@ -290,11 +286,7 @@ contract AllocatedTransferTest is Setup {
 
         // Create and execute transfer
         AllocatedTransfer memory transfer = AllocatedTransfer({
-            nonce: 0,
-            expires: block.timestamp + 1000,
-            allocatorData: "",
-            id: id,
-            recipients: recipients
+            nonce: 0, expires: block.timestamp + 1000, allocatorData: "", id: id, recipients: recipients
         });
 
         vm.prank(swapper);
@@ -355,11 +347,7 @@ contract AllocatedTransferTest is Setup {
 
         // Create and execute transfer
         AllocatedTransfer memory transfer = AllocatedTransfer({
-            nonce: params.nonce,
-            expires: params.deadline,
-            allocatorData: allocatorData,
-            id: id,
-            recipients: recipients
+            nonce: params.nonce, expires: params.deadline, allocatorData: allocatorData, id: id, recipients: recipients
         });
 
         vm.prank(swapper);
@@ -422,11 +410,7 @@ contract AllocatedTransferTest is Setup {
 
         // Create and execute transfer
         AllocatedTransfer memory transfer = AllocatedTransfer({
-            nonce: params.nonce,
-            expires: params.deadline,
-            allocatorData: allocatorData,
-            id: id,
-            recipients: recipients
+            nonce: params.nonce, expires: params.deadline, allocatorData: allocatorData, id: id, recipients: recipients
         });
 
         vm.prank(swapper);
@@ -486,11 +470,7 @@ contract AllocatedTransferTest is Setup {
 
         // Create and execute transfer
         AllocatedTransfer memory transfer = AllocatedTransfer({
-            nonce: params.nonce,
-            expires: params.deadline,
-            allocatorData: allocatorData,
-            id: id,
-            recipients: recipients
+            nonce: params.nonce, expires: params.deadline, allocatorData: allocatorData, id: id, recipients: recipients
         });
 
         bytes8 _ERC6909_MASTER_SLOT_SEED = 0xedcaa89a82293940;

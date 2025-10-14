@@ -67,13 +67,17 @@ library MetadataLib {
         bytes4 chunk;
         uint256 length;
         assembly ("memory-safe") {
-            chunk :=
-                shl(0xe0, shr(shl(5, resetPeriod), 0x3330640037643168323468003168356d31306d00316d00003135730031730000))
+            chunk := shl(
+                0xe0,
+                shr(shl(5, resetPeriod), 0x3330640037643168323468003168356d31306d00316d00003135730031730000)
+            )
             let lastByteIsZero := iszero(shl(0x18, chunk))
             length := sub(5, add(shl(1, lastByteIsZero), iszero(shl(0x10, chunk))))
             if iszero(lastByteIsZero) {
-                chunk :=
-                    xor(shl(0xe8, xor(and(0xffff00, shr(0xe8, chunk)), 0x20)), shl(0xd8, and(0xffff, shr(0xe0, chunk))))
+                chunk := xor(
+                    shl(0xe8, xor(and(0xffff00, shr(0xe8, chunk)), 0x20)),
+                    shl(0xd8, and(0xffff, shr(0xe0, chunk)))
+                )
             }
         }
 
@@ -332,8 +336,7 @@ library MetadataLib {
      * @return A string containing the SVG background markup.
      */
     function _getSvgBackground() internal pure returns (string memory) {
-        return
-        '<g clip-path="url(#c)"><rect fill="none" x="0px" y="0px" width="500px" height="290px" /><rect style="filter: url(#f1)" x="0px" y="0px" width="500px" height="290px" /><g style="filter:url(#tb); transform:scale(1.5); transform-origin:left top;"><rect fill="none" x="0px" y="0px" width="500px" height="290px" /><ellipse cx="25%" cy="0px" rx="180px" ry="120px" fill="#000" opacity="0.85" /></g></g>';
+        return '<g clip-path="url(#c)"><rect fill="none" x="0px" y="0px" width="500px" height="290px" /><rect style="filter: url(#f1)" x="0px" y="0px" width="500px" height="290px" /><g style="filter:url(#tb); transform:scale(1.5); transform-origin:left top;"><rect fill="none" x="0px" y="0px" width="500px" height="290px" /><ellipse cx="25%" cy="0px" rx="180px" ry="120px" fill="#000" opacity="0.85" /></g></g>';
     }
 
     /**
@@ -341,8 +344,7 @@ library MetadataLib {
      * @return A string containing the SVG border markup.
      */
     function _getSvgBorder() internal pure returns (string memory) {
-        return
-        '<rect x="0" y="0" width="500" height="290" rx="42" ry="42" fill="rgba(0,0,0,0)" stroke="rgba(255,255,255,0.2)" /><rect x="16" y="16" width="468" height="258" rx="26" ry="26" fill="rgba(0,0,0,0)" stroke="rgba(255,255,255,0.2)" />';
+        return '<rect x="0" y="0" width="500" height="290" rx="42" ry="42" fill="rgba(0,0,0,0)" stroke="rgba(255,255,255,0.2)" /><rect x="16" y="16" width="468" height="258" rx="26" ry="26" fill="rgba(0,0,0,0)" stroke="rgba(255,255,255,0.2)" />';
     }
 
     /**
@@ -576,9 +578,7 @@ library MetadataLib {
      * @return id The ID.
      */
     function toId(Lock memory lock) internal pure returns (uint256 id) {
-        id = (
-            (lock.scope.asUint256() << 255) | (lock.resetPeriod.asUint256() << 252)
-                | (lock.allocator.toAllocatorId().asUint256() << 160) | lock.token.asUint256()
-        );
+        id = ((lock.scope.asUint256() << 255) | (lock.resetPeriod.asUint256() << 252)
+                | (lock.allocator.toAllocatorId().asUint256() << 160) | lock.token.asUint256());
     }
 }

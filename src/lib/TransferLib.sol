@@ -119,11 +119,10 @@ library TransferLib {
                 mstore(0x00, shl(96, 0xa9059cbb)) // `transfer(address,uint256)`.
 
                 // Perform the transfer using half of available gas & examine the call for failure.
-                withdrawalSucceeded :=
-                    and( // The arguments of `and` are evaluated from right to left.
-                        or(eq(mload(0x00), 1), iszero(returndatasize())), // Returned 1 or nothing.
-                        call(div(gas(), sub(2, strict)), token, 0, 0x10, 0x44, 0x00, 0x20)
-                    )
+                withdrawalSucceeded := and( // The arguments of `and` are evaluated from right to left.
+                    or(eq(mload(0x00), 1), iszero(returndatasize())), // Returned 1 or nothing.
+                    call(div(gas(), sub(2, strict)), token, 0, 0x10, 0x44, 0x00, 0x20)
+                )
 
                 mstore(0x34, 0) // Restore the part of the free memory pointer that was overwritten.
             }

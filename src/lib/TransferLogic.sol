@@ -35,9 +35,8 @@ contract TransferLogic is ConstructorLogic {
     using EventLib for address;
     using ValidityLib for uint96;
     using ValidityLib for uint256;
-    using
-    TransferFunctionCastLib
-    for function(bytes32, address, AllocatedTransfer calldata, uint256[2][] memory) internal;
+    using TransferFunctionCastLib for function(bytes32, address, AllocatedTransfer calldata, uint256[2][] memory)
+    internal;
     using AllocatorLib for address;
 
     // bytes4(keccak256("attest(address,address,address,uint256,uint256)")).

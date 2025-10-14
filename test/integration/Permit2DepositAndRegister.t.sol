@@ -149,8 +149,7 @@ contract Permit2DepositAndRegisterTest is Setup {
                         "permitWitnessTransferFrom(((address,uint256),uint256,uint256),(address,uint256),address,bytes32,string,bytes)",
                         permit,
                         ISignatureTransfer.SignatureTransferDetails({
-                            to: address(theCompact),
-                            requestedAmount: params.amount
+                            to: address(theCompact), requestedAmount: params.amount
                         }),
                         swapper,
                         activationHash,
@@ -292,12 +291,15 @@ contract Permit2DepositAndRegisterTest is Setup {
         uint256[] memory ids;
         uint256[2][] memory idsAndAmounts;
         {
-            uint256 id = (uint256(params.scope) << 255) | (uint256(params.resetPeriod) << 252)
-                | (uint256(allocatorId) << 160) | uint256(uint160(address(0)));
-            uint256 anotherId = (uint256(params.scope) << 255) | (uint256(params.resetPeriod) << 252)
-                | (uint256(allocatorId) << 160) | uint256(uint160(address(token)));
-            uint256 aThirdId = (uint256(params.scope) << 255) | (uint256(params.resetPeriod) << 252)
-                | (uint256(allocatorId) << 160) | uint256(uint160(address(anotherToken)));
+            uint256 id =
+                (uint256(params.scope) << 255) | (uint256(params.resetPeriod) << 252) | (uint256(allocatorId) << 160)
+                | uint256(uint160(address(0)));
+            uint256 anotherId =
+                (uint256(params.scope) << 255) | (uint256(params.resetPeriod) << 252) | (uint256(allocatorId) << 160)
+                | uint256(uint160(address(token)));
+            uint256 aThirdId =
+                (uint256(params.scope) << 255) | (uint256(params.resetPeriod) << 252) | (uint256(allocatorId) << 160)
+                | uint256(uint160(address(anotherToken)));
 
             ids = new uint256[](3);
             idsAndAmounts = new uint256[2][](3);
@@ -418,7 +420,9 @@ contract Permit2DepositAndRegisterTest is Setup {
 
             vm.prank(address(1010));
             vm.deal(address(1010), 1e18);
-            returnedIds = theCompact.batchDepositAndRegisterViaPermit2{ value: 1e18 }(
+            returnedIds = theCompact.batchDepositAndRegisterViaPermit2{
+                value: 1e18
+            }(
                 swapper,
                 tokenPermissions,
                 depositDetails,
@@ -792,8 +796,7 @@ contract Permit2DepositAndRegisterTest is Setup {
                         "permitWitnessTransferFrom(((address,uint256),uint256,uint256),(address,uint256),address,bytes32,string,bytes)",
                         permit,
                         ISignatureTransfer.SignatureTransferDetails({
-                            to: address(theCompact),
-                            requestedAmount: params.amount
+                            to: address(theCompact), requestedAmount: params.amount
                         }),
                         swapper,
                         activationHash,
@@ -929,12 +932,15 @@ contract Permit2DepositAndRegisterTest is Setup {
         uint256[] memory ids;
         uint256[2][] memory idsAndAmounts;
         {
-            uint256 id = (uint256(params.scope) << 255) | (uint256(params.resetPeriod) << 252)
-                | (uint256(allocatorId) << 160) | uint256(uint160(address(0)));
-            uint256 anotherId = (uint256(params.scope) << 255) | (uint256(params.resetPeriod) << 252)
-                | (uint256(allocatorId) << 160) | uint256(uint160(address(token)));
-            uint256 aThirdId = (uint256(params.scope) << 255) | (uint256(params.resetPeriod) << 252)
-                | (uint256(allocatorId) << 160) | uint256(uint160(address(anotherToken)));
+            uint256 id =
+                (uint256(params.scope) << 255) | (uint256(params.resetPeriod) << 252) | (uint256(allocatorId) << 160)
+                | uint256(uint160(address(0)));
+            uint256 anotherId =
+                (uint256(params.scope) << 255) | (uint256(params.resetPeriod) << 252) | (uint256(allocatorId) << 160)
+                | uint256(uint160(address(token)));
+            uint256 aThirdId =
+                (uint256(params.scope) << 255) | (uint256(params.resetPeriod) << 252) | (uint256(allocatorId) << 160)
+                | uint256(uint160(address(anotherToken)));
 
             ids = new uint256[](3);
             idsAndAmounts = new uint256[2][](3);
@@ -1042,7 +1048,9 @@ contract Permit2DepositAndRegisterTest is Setup {
 
             vm.prank(address(1010));
             vm.deal(address(1010), 1e18);
-            returnedIds = theCompact.batchDepositAndRegisterViaPermit2{ value: 1e18 }(
+            returnedIds = theCompact.batchDepositAndRegisterViaPermit2{
+                value: 1e18
+            }(
                 swapper,
                 tokenPermissions,
                 depositDetails,

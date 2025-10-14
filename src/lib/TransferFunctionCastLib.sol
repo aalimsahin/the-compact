@@ -20,12 +20,11 @@ library TransferFunctionCastLib {
      * @param fnIn   Function pointer to `TransferLogic._notExpiredAndAuthorizedByAllocator`.
      * @return fnOut Modified function used in `TransferLogic._processBatchTransfer`.
      */
-    function usingBatchTransfer(
-        function (bytes32, address, AllocatedTransfer calldata, uint256[2][] memory) internal fnIn
-    )
+    function usingBatchTransfer(function(bytes32, address, AllocatedTransfer calldata, uint256[2][] memory)
+            internal fnIn)
         internal
         pure
-        returns (function (bytes32, address, AllocatedBatchTransfer calldata, uint256[2][] memory) internal fnOut)
+        returns (function(bytes32, address, AllocatedBatchTransfer calldata, uint256[2][] memory) internal fnOut)
     {
         assembly ("memory-safe") {
             fnOut := fnIn

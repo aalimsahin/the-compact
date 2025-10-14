@@ -22,16 +22,21 @@ library ClaimHashFunctionCastLib {
      * @param fnIn   Function pointer to `ClaimHashLib._toGenericMultichainClaimHashAndTypehash`.
      * @return fnOut Modified function used in `ClaimHashLib._toMultichainClaimHashAndTypehash`.
      */
-    function usingMultichainClaim(
-        function (uint256, uint256, function (uint256, uint256, bytes32, bytes32, uint256) internal view returns (bytes32)) internal view returns (bytes32, bytes32)
-            fnIn
-    )
+    function usingMultichainClaim(function(uint256, uint256, function(uint256, uint256, bytes32, bytes32, uint256)
+                    internal
+                    view returns (bytes32))
+            internal
+            view returns (
+                bytes32,
+                bytes32
+            ) fnIn)
         internal
         pure
-        returns (
-            function (MultichainClaim calldata, uint256, function (uint256, uint256, bytes32, bytes32, uint256) internal view returns (bytes32)) internal view returns (bytes32, bytes32)
-                fnOut
-        )
+        returns (function(MultichainClaim calldata, uint256, function(uint256, uint256, bytes32, bytes32, uint256)
+                        internal
+                        view returns (bytes32))
+                internal
+                view returns (bytes32, bytes32) fnOut)
     {
         assembly ("memory-safe") {
             fnOut := fnIn
@@ -44,16 +49,21 @@ library ClaimHashFunctionCastLib {
      * @param fnIn   Function pointer to `ClaimHashLib._toGenericMultichainClaimHashAndTypehash`.
      * @return fnOut Modified function used in `ClaimHashLib._toExogenousMultichainClaimHashAndTypehash`.
      */
-    function usingExogenousMultichainClaim(
-        function (uint256, uint256, function (uint256, uint256, bytes32, bytes32, uint256) internal view returns (bytes32)) internal view returns (bytes32, bytes32)
-            fnIn
-    )
+    function usingExogenousMultichainClaim(function(uint256, uint256, function(uint256, uint256, bytes32, bytes32, uint256)
+                    internal
+                    view returns (bytes32))
+            internal
+            view returns (
+                bytes32,
+                bytes32
+            ) fnIn)
         internal
         pure
-        returns (
-            function (ExogenousMultichainClaim calldata, uint256, function (uint256, uint256, bytes32, bytes32, uint256) internal view returns (bytes32)) internal view returns (bytes32, bytes32)
-                fnOut
-        )
+        returns (function(ExogenousMultichainClaim calldata, uint256, function(uint256, uint256, bytes32, bytes32, uint256)
+                        internal
+                        view returns (bytes32))
+                internal
+                view returns (bytes32, bytes32) fnOut)
     {
         assembly ("memory-safe") {
             fnOut := fnIn
@@ -66,16 +76,21 @@ library ClaimHashFunctionCastLib {
      * @param fnIn   Function pointer to `ClaimHashLib._toGenericMultichainClaimHashAndTypehash`.
      * @return fnOut Modified function used in `ClaimHashLib._toBatchMultichainClaimHashAndTypehash`.
      */
-    function usingBatchMultichainClaim(
-        function (uint256, uint256, function (uint256, uint256, bytes32, bytes32, uint256) internal view returns (bytes32)) internal view returns (bytes32, bytes32)
-            fnIn
-    )
+    function usingBatchMultichainClaim(function(uint256, uint256, function(uint256, uint256, bytes32, bytes32, uint256)
+                    internal
+                    view returns (bytes32))
+            internal
+            view returns (
+                bytes32,
+                bytes32
+            ) fnIn)
         internal
         pure
-        returns (
-            function (BatchMultichainClaim calldata, uint256, function (uint256, uint256, bytes32, bytes32, uint256) internal view returns (bytes32)) internal view returns (bytes32, bytes32)
-                fnOut
-        )
+        returns (function(BatchMultichainClaim calldata, uint256, function(uint256, uint256, bytes32, bytes32, uint256)
+                        internal
+                        view returns (bytes32))
+                internal
+                view returns (bytes32, bytes32) fnOut)
     {
         assembly ("memory-safe") {
             fnOut := fnIn
@@ -88,16 +103,21 @@ library ClaimHashFunctionCastLib {
      * @param fnIn   Function pointer to `ClaimHashLib._toGenericBatchMultichainClaimHashAndTypehash`.
      * @return fnOut Modified function used in `ClaimHashLib._toExogenousBatchMultichainClaimHashAndTypehash`.
      */
-    function usingExogenousBatchMultichainClaim(
-        function (uint256, uint256, function (uint256, uint256, bytes32, bytes32, uint256) internal view returns (bytes32)) internal view returns (bytes32, bytes32)
-            fnIn
-    )
+    function usingExogenousBatchMultichainClaim(function(uint256, uint256, function(uint256, uint256, bytes32, bytes32, uint256)
+                    internal
+                    view returns (bytes32))
+            internal
+            view returns (
+                bytes32,
+                bytes32
+            ) fnIn)
         internal
         pure
-        returns (
-            function (ExogenousBatchMultichainClaim calldata, uint256, function (uint256, uint256, bytes32, bytes32, uint256) internal view returns (bytes32)) internal view returns (bytes32, bytes32)
-                fnOut
-        )
+        returns (function(ExogenousBatchMultichainClaim calldata, uint256, function(uint256, uint256, bytes32, bytes32, uint256)
+                        internal
+                        view returns (bytes32))
+                internal
+                view returns (bytes32, bytes32) fnOut)
     {
         assembly ("memory-safe") {
             fnOut := fnIn
@@ -110,10 +130,10 @@ library ClaimHashFunctionCastLib {
      * @param fnIn   Function pointer to `HashLib.toCommitmentsHashFromSingleLock`.
      * @return fnOut Modified function used in `ClaimHashLib._toMultichainClaimHashAndTypehash`.
      */
-    function usingMultichainClaim(function (uint256) internal pure returns (uint256) fnIn)
+    function usingMultichainClaim(function(uint256) internal pure returns (uint256) fnIn)
         internal
         pure
-        returns (function (MultichainClaim calldata) internal pure returns (uint256) fnOut)
+        returns (function(MultichainClaim calldata) internal pure returns (uint256) fnOut)
     {
         assembly ("memory-safe") {
             fnOut := fnIn
@@ -126,10 +146,10 @@ library ClaimHashFunctionCastLib {
      * @param fnIn   Function pointer to `CHashLib.toCommitmentsHashFromSingleLock`.
      * @return fnOut Modified function used in `ClaimHashLib._toExogenousMultichainClaimHashAndTypehash`.
      */
-    function usingExogenousMultichainClaim(function (uint256) internal pure returns (uint256) fnIn)
+    function usingExogenousMultichainClaim(function(uint256) internal pure returns (uint256) fnIn)
         internal
         pure
-        returns (function (ExogenousMultichainClaim calldata) internal pure returns (uint256) fnOut)
+        returns (function(ExogenousMultichainClaim calldata) internal pure returns (uint256) fnOut)
     {
         assembly ("memory-safe") {
             fnOut := fnIn

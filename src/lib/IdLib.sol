@@ -154,9 +154,11 @@ library IdLib {
      * @return          Whether the allocator can be registered.
      */
     function canBeRegistered(address allocator, bytes calldata proof) internal view returns (bool) {
-        return (msg.sender == allocator).or(allocator.code.length > 0).or(
-            proof.length == 85 && (proof[0] == 0xff).and(allocator == address(uint160(uint256(proof.hashCalldata()))))
-        );
+        return (msg.sender == allocator).or(allocator.code.length > 0)
+            .or(
+                proof.length == 85
+                    && (proof[0] == 0xff).and(allocator == address(uint160(uint256(proof.hashCalldata()))))
+            );
     }
 
     /**

@@ -59,11 +59,7 @@ contract HashLibTest is Setup {
         recipients[0] = Component({ claimant: claimant1_val, amount: amount });
 
         AllocatedTransfer memory transfer = AllocatedTransfer({
-            allocatorData: bytes(""),
-            nonce: nonce,
-            expires: expiration,
-            id: id,
-            recipients: recipients
+            allocatorData: bytes(""), nonce: nonce, expires: expiration, id: id, recipients: recipients
         });
 
         bytes32 expectedHash = keccak256(
@@ -91,11 +87,7 @@ contract HashLibTest is Setup {
         recipients[1] = Component({ claimant: claimant2_val, amount: amount2 });
 
         AllocatedTransfer memory transfer = AllocatedTransfer({
-            allocatorData: bytes(""),
-            nonce: nonce,
-            expires: expiration,
-            id: id,
-            recipients: recipients
+            allocatorData: bytes(""), nonce: nonce, expires: expiration, id: id, recipients: recipients
         });
 
         vm.prank(sponsor);
@@ -126,11 +118,7 @@ contract HashLibTest is Setup {
         recipients[1] = Component({ claimant: claimant2_val, amount: 1 });
 
         AllocatedTransfer memory transfer = AllocatedTransfer({
-            allocatorData: bytes(""),
-            nonce: nonce,
-            expires: expiration,
-            id: id,
-            recipients: recipients
+            allocatorData: bytes(""), nonce: nonce, expires: expiration, id: id, recipients: recipients
         });
 
         vm.expectRevert(stdError.arithmeticError);
@@ -152,10 +140,7 @@ contract HashLibTest is Setup {
         transfers[1] = transfer2;
 
         AllocatedBatchTransfer memory batchTransfer = AllocatedBatchTransfer({
-            allocatorData: bytes(""),
-            nonce: nonce,
-            expires: expiration,
-            transfers: transfers
+            allocatorData: bytes(""), nonce: nonce, expires: expiration, transfers: transfers
         });
 
         bytes32 expectedHash = _calculateBatchTransferClaimHash(batchTransfer);
@@ -188,10 +173,7 @@ contract HashLibTest is Setup {
         transfers[1] = transfer2;
 
         AllocatedBatchTransfer memory batchTransfer = AllocatedBatchTransfer({
-            allocatorData: bytes(""),
-            nonce: nonce,
-            expires: expiration,
-            transfers: transfers
+            allocatorData: bytes(""), nonce: nonce, expires: expiration, transfers: transfers
         });
 
         vm.expectRevert(stdError.arithmeticError);
@@ -414,11 +396,7 @@ contract HashLibTest is Setup {
         recipients[0] = Component({ claimant: claimant1_val, amount: _amount });
 
         AllocatedTransfer memory transfer = AllocatedTransfer({
-            allocatorData: bytes(""),
-            nonce: _nonce,
-            expires: _expires,
-            id: tokenId,
-            recipients: recipients
+            allocatorData: bytes(""), nonce: _nonce, expires: _expires, id: tokenId, recipients: recipients
         });
 
         bytes32 expectedHash = keccak256(

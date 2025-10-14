@@ -27,10 +27,11 @@ library ClaimHashLib {
     using ClaimHashFunctionCastLib for function(uint256) internal pure returns (uint256);
     using ClaimHashFunctionCastLib for function(uint256) internal view returns (bytes32, bytes32);
     using ClaimHashFunctionCastLib for function(uint256, uint256) internal view returns (bytes32, bytes32);
-    using
-    ClaimHashFunctionCastLib
-    for
-        function(uint256, uint256, function(uint256, uint256, bytes32, bytes32, uint256) internal view returns (bytes32)) internal view returns (bytes32, bytes32);
+    using ClaimHashFunctionCastLib for function(uint256, uint256, function(uint256, uint256, bytes32, bytes32, uint256)
+            internal
+            view returns (bytes32))
+    internal
+    view returns (bytes32, bytes32);
     using HashLib for uint256;
     using HashLib for Claim;
     using HashLib for BatchClaim;

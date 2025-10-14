@@ -287,12 +287,16 @@ library DepositViaPermit2Lib {
                 mstore(memoryLocation, sub(add(tokenPermissionsFragmentStart, 0x2f), memoryOffset))
 
                 // Derive activation typehash.
-                activationTypehash :=
-                    keccak256(activationStart, sub(add(tokenPermissionsFragmentStart, 1), activationStart))
+                activationTypehash := keccak256(
+                    activationStart,
+                    sub(add(tokenPermissionsFragmentStart, 1), activationStart)
+                )
 
                 // Derive compact typehash.
-                compactTypehash :=
-                    keccak256(categorySpecificStart, sub(add(tokenPermissionsFragmentStart, 1), categorySpecificStart))
+                compactTypehash := keccak256(
+                    categorySpecificStart,
+                    sub(add(tokenPermissionsFragmentStart, 1), categorySpecificStart)
+                )
                 break
             }
         }

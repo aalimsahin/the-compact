@@ -89,8 +89,11 @@ contract Setup is TestHelpers {
         vm.deal(permit2DeployerDeployer, 1e18);
         vm.prank(permit2DeployerDeployer);
         assembly ("memory-safe") {
-            deployedPermit2Deployer :=
-                create(0, add(permit2DeployerCreationCode, 0x20), mload(permit2DeployerCreationCode))
+            deployedPermit2Deployer := create(
+                0,
+                add(permit2DeployerCreationCode, 0x20),
+                mload(permit2DeployerCreationCode)
+            )
         }
 
         require(deployedPermit2Deployer != permit2Deployer, "Contract deployment failed");
@@ -185,9 +188,7 @@ contract Setup is TestHelpers {
             abi.encodeWithSignature(
                 "permitWitnessTransferFrom(((address,uint256)[],uint256,uint256),(address,uint256)[],address,bytes32,string,bytes)",
                 ISignatureTransfer.PermitBatchTransferFrom({
-                    permitted: tokenPermissionsOnCall,
-                    nonce: args.nonce,
-                    deadline: args.deadline
+                    permitted: tokenPermissionsOnCall, nonce: args.nonce, deadline: args.deadline
                 }),
                 signatureTransferDetails,
                 swapper,
@@ -214,8 +215,9 @@ contract Setup is TestHelpers {
         }
 
         // Create digest for signing
-        bytes32 domainSeparator =
-            keccak256(abi.encode(permit2EIP712DomainHash, keccak256(bytes("Permit2")), block.chainid, address(permit2)));
+        bytes32 domainSeparator = keccak256(
+            abi.encode(permit2EIP712DomainHash, keccak256(bytes("Permit2")), block.chainid, address(permit2))
+        );
 
         bytes32 tokenPermissionsPortion = keccak256(
             abi.encode(
@@ -280,12 +282,12 @@ contract Setup is TestHelpers {
         LockDetails memory actualDetails;
 
         (
-            actualDetails.token,
-            actualDetails.allocator,
-            actualDetails.resetPeriod,
-            actualDetails.scope,
-            actualDetails.lockTag
-        ) = theCompact.getLockDetails(id);
+                actualDetails.token,
+                actualDetails.allocator,
+                actualDetails.resetPeriod,
+                actualDetails.scope,
+                actualDetails.lockTag
+            ) = theCompact.getLockDetails(id);
 
         assertEq(actualDetails.token, expectedDetails.token);
         assertEq(actualDetails.allocator, expectedDetails.allocator);

@@ -102,8 +102,13 @@ contract DepositViaPermit2LogicTest is Permit2Test {
         // Verify lock details
         {
             LockDetails memory lockDetails;
-            (lockDetails.token, lockDetails.allocator, lockDetails.resetPeriod, lockDetails.scope, lockDetails.lockTag)
-            = logic.getLockDetails(id);
+            (
+                    lockDetails.token,
+                    lockDetails.allocator,
+                    lockDetails.resetPeriod,
+                    lockDetails.scope,
+                    lockDetails.lockTag
+                ) = logic.getLockDetails(id);
 
             assertEq(lockDetails.token, address(testToken));
             assertEq(lockDetails.allocator, address(allocator));
@@ -131,8 +136,7 @@ contract DepositViaPermit2LogicTest is Permit2Test {
         uint256[] memory amounts = new uint256[](1);
         amounts[0] = 0.5 ether;
 
-        (ISignatureTransfer.TokenPermissions[] memory tokenPermissions, bytes memory signature) =
-        createPermit2BatchSignature(
+        (ISignatureTransfer.TokenPermissions[] memory tokenPermissions, bytes memory signature) = createPermit2BatchSignature(
             tokens, amounts, 0, block.timestamp + 1 days, lockTag, recipient, privateKey, address(logic)
         );
 
@@ -163,8 +167,7 @@ contract DepositViaPermit2LogicTest is Permit2Test {
         amounts[0] = 0.5 ether;
         amounts[1] = 0.25 ether;
 
-        (ISignatureTransfer.TokenPermissions[] memory tokenPermissions, bytes memory signature) =
-        createPermit2BatchSignature(
+        (ISignatureTransfer.TokenPermissions[] memory tokenPermissions, bytes memory signature) = createPermit2BatchSignature(
             tokens, amounts, 0, block.timestamp + 1 days, lockTag, recipient, privateKey, address(logic)
         );
 
@@ -211,8 +214,7 @@ contract DepositViaPermit2LogicTest is Permit2Test {
         amounts[1] = 0.5 ether;
         amounts[2] = 0.25 ether;
 
-        (ISignatureTransfer.TokenPermissions[] memory tokenPermissions, bytes memory signature) =
-        createPermit2BatchSignature(
+        (ISignatureTransfer.TokenPermissions[] memory tokenPermissions, bytes memory signature) = createPermit2BatchSignature(
             tokens, amounts, 0, block.timestamp + 1 days, lockTag, recipient, privateKey, address(logic)
         );
 
@@ -224,9 +226,9 @@ contract DepositViaPermit2LogicTest is Permit2Test {
             DepositDetails({ nonce: 0, deadline: block.timestamp + 1 days, lockTag: lockTag });
 
         // Include the native value in the call to the permit2 batch deposit function
-        uint256[] memory ids = logic.batchDepositViaPermit2{ value: amounts[0] }(
-            depositor, tokenPermissions, depositDetails, recipient, signature
-        );
+        uint256[] memory ids = logic.batchDepositViaPermit2{
+            value: amounts[0]
+        }(depositor, tokenPermissions, depositDetails, recipient, signature);
 
         // Verify lock details
         LockDetails memory nativeLock;
@@ -242,12 +244,12 @@ contract DepositViaPermit2LogicTest is Permit2Test {
 
         LockDetails memory testTokenLock;
         (
-            testTokenLock.token,
-            testTokenLock.allocator,
-            testTokenLock.resetPeriod,
-            testTokenLock.scope,
-            testTokenLock.lockTag
-        ) = logic.getLockDetails(ids[1]);
+                testTokenLock.token,
+                testTokenLock.allocator,
+                testTokenLock.resetPeriod,
+                testTokenLock.scope,
+                testTokenLock.lockTag
+            ) = logic.getLockDetails(ids[1]);
 
         assertEq(testTokenLock.token, address(testToken));
         assertEq(testTokenLock.allocator, address(allocator));
@@ -258,12 +260,12 @@ contract DepositViaPermit2LogicTest is Permit2Test {
 
         LockDetails memory secondTokenLock;
         (
-            secondTokenLock.token,
-            secondTokenLock.allocator,
-            secondTokenLock.resetPeriod,
-            secondTokenLock.scope,
-            secondTokenLock.lockTag
-        ) = logic.getLockDetails(ids[2]);
+                secondTokenLock.token,
+                secondTokenLock.allocator,
+                secondTokenLock.resetPeriod,
+                secondTokenLock.scope,
+                secondTokenLock.lockTag
+            ) = logic.getLockDetails(ids[2]);
 
         assertEq(secondTokenLock.token, address(secondToken));
         assertEq(secondTokenLock.allocator, address(allocator));

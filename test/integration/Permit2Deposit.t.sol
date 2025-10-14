@@ -90,8 +90,7 @@ contract Permit2DepositTest is Setup {
                     "permitWitnessTransferFrom(((address,uint256),uint256,uint256),(address,uint256),address,bytes32,string,bytes)",
                     permit,
                     ISignatureTransfer.SignatureTransferDetails({
-                        to: address(theCompact),
-                        requestedAmount: params.amount
+                        to: address(theCompact), requestedAmount: params.amount
                     }),
                     swapper,
                     witnessHash,
@@ -107,8 +106,13 @@ contract Permit2DepositTest is Setup {
         // Verify lock details
         {
             LockDetails memory lockDetails;
-            (lockDetails.token, lockDetails.allocator, lockDetails.resetPeriod, lockDetails.scope, lockDetails.lockTag)
-            = theCompact.getLockDetails(id);
+            (
+                    lockDetails.token,
+                    lockDetails.allocator,
+                    lockDetails.resetPeriod,
+                    lockDetails.scope,
+                    lockDetails.lockTag
+                ) = theCompact.getLockDetails(id);
 
             assertEq(lockDetails.token, address(token));
             assertEq(lockDetails.allocator, allocator);
@@ -184,14 +188,11 @@ contract Permit2DepositTest is Setup {
             {
                 signatureTransferDetails = new ISignatureTransfer.SignatureTransferDetails[](1);
                 signatureTransferDetails[0] = ISignatureTransfer.SignatureTransferDetails({
-                    to: address(theCompact),
-                    requestedAmount: params.amount
+                    to: address(theCompact), requestedAmount: params.amount
                 });
 
                 permit = ISignatureTransfer.PermitBatchTransferFrom({
-                    permitted: tokenPermissions,
-                    nonce: params.nonce,
-                    deadline: params.deadline
+                    permitted: tokenPermissions, nonce: params.nonce, deadline: params.deadline
                 });
             }
         }
@@ -320,16 +321,13 @@ contract Permit2DepositTest is Setup {
                     {
                         signatureTransferDetails = new ISignatureTransfer.SignatureTransferDetails[](1);
                         signatureTransferDetails[0] = ISignatureTransfer.SignatureTransferDetails({
-                            to: address(theCompact),
-                            requestedAmount: params.amount
+                            to: address(theCompact), requestedAmount: params.amount
                         });
                     }
 
                     {
                         permitOnCall = ISignatureTransfer.PermitBatchTransferFrom({
-                            permitted: tokenPermissionsOnCall,
-                            nonce: params.nonce,
-                            deadline: params.deadline
+                            permitted: tokenPermissionsOnCall, nonce: params.nonce, deadline: params.deadline
                         });
                     }
                 }
@@ -362,9 +360,9 @@ contract Permit2DepositTest is Setup {
                 DepositDetails memory details =
                     DepositDetails({ nonce: params.nonce, deadline: params.deadline, lockTag: lockTag });
 
-                ids = theCompact.batchDepositViaPermit2{ value: params.amount }(
-                    swapper, tokenPermissions, details, params.recipient, signature
-                );
+                ids = theCompact.batchDepositViaPermit2{
+                    value: params.amount
+                }(swapper, tokenPermissions, details, params.recipient, signature);
                 vm.snapshotGasLastCall("depositBatchViaPermit2NativeAndERC20");
 
                 assertEq(ids.length, 2);
@@ -455,23 +453,23 @@ contract Permit2DepositTest is Setup {
                         )
                     ),
                     keccak256(
-                        abi.encode(
-                            keccak256(
-                                "PermitBatchWitnessTransferFrom(TokenPermissions[] permitted,address spender,uint256 nonce,uint256 deadline,CompactDeposit witness)CompactDeposit(bytes12 lockTag,address recipient)TokenPermissions(address token,uint256 amount)"
-                            ),
-                            tokenPermissionsPortion,
-                            address(theCompact), // spender
-                            params.nonce,
-                            params.deadline,
-                            keccak256(
-                                abi.encode(
-                                    keccak256("CompactDeposit(bytes12 lockTag,address recipient)"),
-                                    lockTag,
-                                    params.recipient
+                            abi.encode(
+                                keccak256(
+                                    "PermitBatchWitnessTransferFrom(TokenPermissions[] permitted,address spender,uint256 nonce,uint256 deadline,CompactDeposit witness)CompactDeposit(bytes12 lockTag,address recipient)TokenPermissions(address token,uint256 amount)"
+                                ),
+                                tokenPermissionsPortion,
+                                address(theCompact), // spender
+                                params.nonce,
+                                params.deadline,
+                                keccak256(
+                                    abi.encode(
+                                        keccak256("CompactDeposit(bytes12 lockTag,address recipient)"),
+                                        lockTag,
+                                        params.recipient
+                                    )
                                 )
                             )
                         )
-                    )
                 )
             );
 
@@ -485,7 +483,9 @@ contract Permit2DepositTest is Setup {
             vm.expectRevert(
                 abi.encodeWithSelector(ITheCompact.InvalidBatchDepositStructure.selector), address(theCompact)
             );
-            theCompact.batchDepositViaPermit2{ value: 0 }(
+            theCompact.batchDepositViaPermit2{
+                value: 0
+            }(
                 swapper,
                 new ISignatureTransfer.TokenPermissions[](0),
                 DepositDetails({ nonce: params.nonce, deadline: params.deadline, lockTag: lockTag }),
@@ -557,9 +557,9 @@ contract Permit2DepositTest is Setup {
             vm.expectRevert(
                 abi.encodeWithSelector(ITheCompact.InvalidBatchDepositStructure.selector), address(theCompact)
             );
-            theCompact.batchDepositViaPermit2{ value: 0 }(
-                swapper, tokenPermissions, details, params.recipient, signature
-            );
+            theCompact.batchDepositViaPermit2{
+                value: 0
+            }(swapper, tokenPermissions, details, params.recipient, signature);
         }
 
         // Verify balances
@@ -625,9 +625,9 @@ contract Permit2DepositTest is Setup {
             vm.expectRevert(
                 abi.encodeWithSelector(ITheCompact.InvalidBatchDepositStructure.selector), address(theCompact)
             );
-            theCompact.batchDepositViaPermit2{ value: params.amount }(
-                swapper, tokenPermissions, details, params.recipient, signature
-            );
+            theCompact.batchDepositViaPermit2{
+                value: params.amount
+            }(swapper, tokenPermissions, details, params.recipient, signature);
         }
 
         // Verify balances
@@ -693,9 +693,9 @@ contract Permit2DepositTest is Setup {
             vm.expectRevert(
                 abi.encodeWithSelector(ITheCompact.InvalidBatchDepositStructure.selector), address(theCompact)
             );
-            theCompact.batchDepositViaPermit2{ value: params.amount + 1 }(
-                swapper, tokenPermissions, details, params.recipient, signature
-            );
+            theCompact.batchDepositViaPermit2{
+                value: params.amount + 1
+            }(swapper, tokenPermissions, details, params.recipient, signature);
         }
 
         // Verify balances
@@ -761,9 +761,9 @@ contract Permit2DepositTest is Setup {
             vm.expectRevert(
                 abi.encodeWithSelector(ITheCompact.InvalidDepositTokenOrdering.selector), address(theCompact)
             );
-            theCompact.batchDepositViaPermit2{ value: 0 }(
-                swapper, tokenPermissions, details, params.recipient, signature
-            );
+            theCompact.batchDepositViaPermit2{
+                value: 0
+            }(swapper, tokenPermissions, details, params.recipient, signature);
         }
 
         // Verify balances
@@ -836,9 +836,9 @@ contract Permit2DepositTest is Setup {
                 abi.encodeWithSelector(bytes4(0x815e1d64)),
                 address(permit2) // error InvalidSigner
             );
-            theCompact.batchDepositViaPermit2{ value: params.amount }(
-                swapper, tokenPermissions, details, params.recipient, signature
-            );
+            theCompact.batchDepositViaPermit2{
+                value: params.amount
+            }(swapper, tokenPermissions, details, params.recipient, signature);
         }
 
         // Verify balances
@@ -904,9 +904,9 @@ contract Permit2DepositTest is Setup {
             vm.expectRevert(
                 abi.encodeWithSelector(ITheCompact.InvalidDepositBalanceChange.selector), address(theCompact)
             );
-            theCompact.batchDepositViaPermit2{ value: params.amount }(
-                swapper, tokenPermissions, details, params.recipient, signature
-            );
+            theCompact.batchDepositViaPermit2{
+                value: params.amount
+            }(swapper, tokenPermissions, details, params.recipient, signature);
         }
 
         // Verify balances
@@ -975,9 +975,9 @@ contract Permit2NotDeployedTest is Setup {
                 DepositDetails({ nonce: params.nonce, deadline: params.deadline, lockTag: lockTag });
 
             vm.expectRevert(abi.encodeWithSelector(ITheCompact.Permit2CallFailed.selector), address(theCompact));
-            theCompact.batchDepositViaPermit2{ value: params.amount }(
-                swapper, tokenPermissions, details, params.recipient, signature
-            );
+            theCompact.batchDepositViaPermit2{
+                value: params.amount
+            }(swapper, tokenPermissions, details, params.recipient, signature);
         }
 
         // Verify balances

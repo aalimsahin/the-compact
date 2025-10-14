@@ -10,7 +10,12 @@ contract AlwaysOKEmissary is IEmissary {
         bytes32, /* claimHash */
         bytes calldata, /* signature */
         bytes12 /* lockTag */
-    ) external pure override returns (bytes4) {
+    )
+        external
+        pure
+        override
+        returns (bytes4)
+    {
         return IEmissary.verifyClaim.selector;
     }
 }

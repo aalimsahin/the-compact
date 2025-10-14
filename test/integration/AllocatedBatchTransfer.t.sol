@@ -110,10 +110,7 @@ contract AllocatedBatchTransferTest is Setup {
         {
             // Create batch transfer
             transfer = AllocatedBatchTransfer({
-                nonce: params.nonce,
-                expires: params.deadline,
-                allocatorData: allocatorData,
-                transfers: transfers
+                nonce: params.nonce, expires: params.deadline, allocatorData: allocatorData, transfers: transfers
             });
         }
 
@@ -231,10 +228,7 @@ contract AllocatedBatchTransferTest is Setup {
             // Create batch transfer
             {
                 transfer = AllocatedBatchTransfer({
-                    nonce: params.nonce,
-                    expires: params.deadline,
-                    allocatorData: allocatorData,
-                    transfers: transfers
+                    nonce: params.nonce, expires: params.deadline, allocatorData: allocatorData, transfers: transfers
                 });
             }
         }

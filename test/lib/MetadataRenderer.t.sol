@@ -168,24 +168,25 @@ contract MetadataRendererTest is Test {
         // NOTE: Tstorish is deployed first, metadata renderer second
         metadataRenderer = MetadataRenderer(address(theCompact).compute(2));
 
-        mockToken =
-            new MockERC20{ salt: bytes32(uint256(0xdeadbeef)) }(MOCK_TOKEN_NAME, MOCK_TOKEN_SYMBOL, MOCK_TOKEN_DECIMALS);
+        mockToken = new MockERC20{
+            salt: bytes32(uint256(0xdeadbeef))
+        }(MOCK_TOKEN_NAME, MOCK_TOKEN_SYMBOL, MOCK_TOKEN_DECIMALS);
         mockAllocator = address(new MockAllocator());
 
         theCompact.__registerAllocator(mockAllocator, "");
 
         tokenErc6909Id = MetadataLib.Lock({
-            token: address(mockToken),
-            allocator: mockAllocator,
-            resetPeriod: ResetPeriod.OneDay,
-            scope: Scope.ChainSpecific
-        }).toId();
+                token: address(mockToken),
+                allocator: mockAllocator,
+                resetPeriod: ResetPeriod.OneDay,
+                scope: Scope.ChainSpecific
+            }).toId();
         nativeErc6909Id = MetadataLib.Lock({
-            token: address(0),
-            allocator: mockAllocator,
-            resetPeriod: ResetPeriod.SevenDaysAndOneHour,
-            scope: Scope.Multichain
-        }).toId();
+                token: address(0),
+                allocator: mockAllocator,
+                resetPeriod: ResetPeriod.SevenDaysAndOneHour,
+                scope: Scope.Multichain
+            }).toId();
 
         assertEq(metadataRenderer.decimals(nativeErc6909Id), NATIVE_TOKEN_DECIMALS, "Native decimals mismatch");
     }
@@ -365,33 +366,33 @@ contract MetadataRendererTest is Test {
 
     function test_name_unknownToken() public {
         uint256 id = MetadataLib.Lock({
-            token: address(new Dummy()),
-            allocator: mockAllocator,
-            resetPeriod: ResetPeriod.TenMinutes,
-            scope: Scope.ChainSpecific
-        }).toId();
+                token: address(new Dummy()),
+                allocator: mockAllocator,
+                resetPeriod: ResetPeriod.TenMinutes,
+                scope: Scope.ChainSpecific
+            }).toId();
         string memory expectedName = string.concat("Compact ", UNKNOWN_TOKEN_NAME);
         assertEq(metadataRenderer.name(id), expectedName, "Unknown token name mismatch");
     }
 
     function test_symbol_unknownToken() public {
         uint256 id = MetadataLib.Lock({
-            token: address(new Dummy()),
-            allocator: mockAllocator,
-            resetPeriod: ResetPeriod.TenMinutes,
-            scope: Scope.ChainSpecific
-        }).toId();
+                token: address(new Dummy()),
+                allocator: mockAllocator,
+                resetPeriod: ResetPeriod.TenMinutes,
+                scope: Scope.ChainSpecific
+            }).toId();
         string memory expectedSymbol = string.concat(unicode"🤝-", UNKNOWN_TOKEN_SYMBOL);
         assertEq(metadataRenderer.symbol(id), expectedSymbol, "Unknown token symbol mismatch");
     }
 
     function test_decimals_unknownToken() public {
         uint256 id = MetadataLib.Lock({
-            token: address(new Dummy()),
-            allocator: mockAllocator,
-            resetPeriod: ResetPeriod.TenMinutes,
-            scope: Scope.ChainSpecific
-        }).toId();
+                token: address(new Dummy()),
+                allocator: mockAllocator,
+                resetPeriod: ResetPeriod.TenMinutes,
+                scope: Scope.ChainSpecific
+            }).toId();
         assertEq(metadataRenderer.decimals(id), UNKNOWN_TOKEN_DECIMALS, "Unknown token decimals mismatch");
     }
 

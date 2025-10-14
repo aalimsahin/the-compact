@@ -114,8 +114,10 @@ contract RegistrationLogic is ConstructorLogic {
             // Retrieve the free memory pointer; memory will be left dirtied.
             let m := mload(0x40)
 
-            preimageLength :=
-                sub(preimageLength, mul(0x20, or(eq(typehash, COMPACT_TYPEHASH), eq(typehash, BATCH_COMPACT_TYPEHASH))))
+            preimageLength := sub(
+                preimageLength,
+                mul(0x20, or(eq(typehash, COMPACT_TYPEHASH), eq(typehash, BATCH_COMPACT_TYPEHASH)))
+            )
 
             // Copy relevant arguments from calldata to prepare hash preimage.
             // Note that provided arguments may have dirty upper bits, which will
